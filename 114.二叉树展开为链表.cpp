@@ -1,3 +1,10 @@
+// @before-stub-for-debug-begin
+#include <vector>
+#include <string>
+
+using namespace std;
+// @before-stub-for-debug-end
+
 /*
  * @lc app=leetcode.cn id=114 lang=cpp
  *
@@ -18,12 +25,20 @@
  */
 class Solution {
 public:
-    TreeNode* traverse(TreeNode* root){
-        if(root == nullptr)return nullptr;
-        
-    }
     void flatten(TreeNode* root) {
-        traverse(root);
+        TreeNode* now = root;
+        while(now != nullptr){
+            if(now->left != nullptr){
+                auto next = now -> left;
+                auto pre = next;
+                while(pre->right != nullptr)
+                    pre = pre->right;
+                pre->right = now->right;
+                now->left = nullptr;
+                now->right = next;
+            }
+            now = now->right;
+        }
     }
 };
 // @lc code=end
