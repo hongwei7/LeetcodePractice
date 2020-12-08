@@ -8,7 +8,10 @@
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        
+        if(matrix.size() == 0 || matrix[0].size() == 0)return false;
+		int top = 0, bottom = matrix.size(), left = 0, right = matrix[0].size();
+        int midV, midH;
+
     }
 };
 // @lc code=end

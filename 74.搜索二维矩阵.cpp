@@ -22,13 +22,11 @@ public:
                 bottom = mid;
             }
             else{
-                top = top + 1;
+                top = mid + 1;
             }
         }
-        cout << row << endl;
         if(row == -1)return false;
         while(left < right){
-            //cout << left << " " << right << " " << left + (right - left)/2 << endl;
             mid = left + (right - left) / 2;
             if(matrix[row][mid] == target){
                 return true;

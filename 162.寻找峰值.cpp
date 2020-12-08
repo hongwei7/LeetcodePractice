@@ -15,27 +15,22 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    int findPeakElement(vector<int>& nums) {
-		if(nums.size() <= 1)return 0;
-        if(nums.size() == 2)return nums[1] > nums[0];
-        int left = 0, right = nums.size();
-        int mid;
-        while(left < right){
-			mid = left + (right - left) / 2;
-            //cout <<left<<right<<mid<<endl;
-            if(mid == 0)return 0;
-            if(mid == nums.size() - 1)return (nums[mid]>nums[mid - 1])? mid: mid - 1;
-            if(nums[mid] > nums[mid + 1] && nums[mid - 1] < nums[mid]){
-				return mid;
-            }
-            else if(nums[mid] > nums[mid + 1]){
-                right = mid;
-            }
-            else{
+    int search(vector<int>& nums, int left, int right){
+        int mid = left + (right - left) / 2;
+        if(left < right){
+            if(nums[mid] < nums[mid + 1]){
                 left = mid + 1;
             }
+            else{
+                right = mid;
+            }
+            return search(nums, left, right);
         }
-        return 0;
+        return left;
+    }
+    int findPeakElement(vector<int>& nums) {
+        int left = 0, right = nums.size() - 1;
+        return search(nums, left, right);
     }
 };
 // @lc code=end
